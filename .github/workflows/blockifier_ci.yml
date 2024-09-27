@@ -14,6 +14,7 @@ on:
       # Other than code-related changes, all changes related to the native-blockifier build-and-push
       # process should trigger the build (e.g., changes to the Dockerfile, build scripts, etc.).
       - ".github/workflows/blockifier_ci.yml"
+      - ".github/workflows/upload_artifacts.yml"
       - "README.md"
 
 # On PR events, cancel existing CI runs on this same PR for this workflow.
