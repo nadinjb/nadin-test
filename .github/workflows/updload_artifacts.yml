@@ -10,7 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - run: echo 'The triggering workflow passed'
+      - name: Authenticate with GCS
+        uses: "google-github-actions/auth@v2"
+        with:
+          credentials_json: ${{ secrets.NADIN_TEST_FORK_BUCKET_ACCESS_KEY }}
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
