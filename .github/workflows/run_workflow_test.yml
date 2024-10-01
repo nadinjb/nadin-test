@@ -1,0 +1,6 @@
+name: Test-workflow
+
+on:
+  workflow_run:
+    workflows: [Blockifier-CI-Test]
+    types: [completed]
