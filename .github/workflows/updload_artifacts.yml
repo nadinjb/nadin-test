@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_commit.id }}
+
+      - name: Verify current branch
+        run: git branch --show-current
+        
       - name: Authenticate with GCS
         uses: "google-github-actions/auth@v2"
         with:

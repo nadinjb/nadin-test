@@ -12,7 +12,7 @@ on:
       - edited
     paths:
       # Other than code-related changes, all changes related to the native-blockifier build-and-push
-      # process should trigger the build (e.g., changes to the Dockerfile, build scripts, etc.).
+      # process should trigger the build (e.g., changes to the Dockerfile, build scripts, etc.). t
       - ".github/workflows/blockifier_ci.yml"
       - ".github/workflows/upload_artifacts.yml"
       - ".github/workflows/run_workflow_test.yml"
