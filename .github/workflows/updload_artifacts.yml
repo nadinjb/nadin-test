@@ -16,7 +16,7 @@ jobs:
 
       - name: Verify current branch
         run: git branch --show-current
-        
+
       - name: Authenticate with GCS
         uses: "google-github-actions/auth@v2"
         with:
@@ -28,17 +28,17 @@ jobs:
           COMMIT_SHA: ${{ github.event.workflow_run.head_commit.id }}
         run: echo "SHORT_HASH=${COMMIT_SHA:0:7}" >> $GITHUB_ENV
 
-      - name: Commit hash - 2
-        # if: ${{ github.event_name == 'pull_request' }}
-        env:
-          COMMIT_SHA: ${{ github.event.pull_request.base.sha }}
-        run: echo "SHORT_HASH=${COMMIT_SHA:0:7}" >> $GITHUB_ENV
+      - name: ls
+        run: ls
 
-      - name: Commit hash - 3
-        # if: ${{ github.event_name == 'pull_request' }}
-        env:
-          COMMIT_SHA: ${{ github.event_name == 'pull_request'  }}
-        run: echo "SHORT_HASH=${COMMIT_SHA:0:7}" >> $GITHUB_ENV
+      - name: Upload binary to GCP
+        id: upload_file
+        uses: "google-github-actions/upload-cloud-storage@v2"
+        with:
+          path: "upload_to_gcp.txt"
+          destination: "nadin-test-fork/${{ env.SHORT_HASH }}/"
+
+
 
   on-failure:
     runs-on: ubuntu-latest
